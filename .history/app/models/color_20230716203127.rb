@@ -6,7 +6,7 @@ class Color < ApplicationRecord
         ["color_name", "created_at", "hex_value", "id", "updated_at"]
     end
 
-    def self.ransackable_associations(auth_object = nil)
-        ["product_colors", "products"]
-    end
+    # def self.ransackable_associations(auth_object = nil)
+    #     ["product_colors", "products"]
+    #   end
 end

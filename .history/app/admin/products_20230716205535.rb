@@ -1,9 +1,7 @@
 ActiveAdmin.register Product do
 
   permit_params :name, :description, :price, :brand, :image, :category_id
-
-  filter :category
-  filter :colors
+  
 
   index do
     selectable_column
@@ -13,13 +11,6 @@ ActiveAdmin.register Product do
     column :price
     column :brand
     column :category
-    column :colors do |product|
-      ul do
-        product.colors.each do |color|
-          li color.color_name
-        end
-      end
-    end
     actions
   end
 
@@ -32,9 +23,7 @@ ActiveAdmin.register Product do
       row :price
       row :brand
       row :category
-      row :colors do |product|
-        product.colors.pluck(:color_name).join(', ')
-      end
+      # Agrega otras columnas aquí si es necesario
     end
   end
 
@@ -46,7 +35,7 @@ ActiveAdmin.register Product do
       f.input :price
       f.input :brand
       f.input :category
-      f.input :colors, as: :check_boxes, collection: Color.all
+      # Agrega otros campos aquí si es necesario
     end
     f.actions
   end

@@ -22,6 +22,8 @@ ActiveAdmin.register Product do
     end
     actions
   end
+    actions
+  end
 
   # Define las columnas que se mostrarán en la vista de show
   show do
@@ -32,9 +34,7 @@ ActiveAdmin.register Product do
       row :price
       row :brand
       row :category
-      row :colors do |product|
-        product.colors.pluck(:color_name).join(', ')
-      end
+      # Agrega otras columnas aquí si es necesario
     end
   end
 
@@ -46,7 +46,7 @@ ActiveAdmin.register Product do
       f.input :price
       f.input :brand
       f.input :category
-      f.input :colors, as: :check_boxes, collection: Color.all
+      # Agrega otros campos aquí si es necesario
     end
     f.actions
   end

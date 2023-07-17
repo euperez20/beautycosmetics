@@ -32,9 +32,7 @@ ActiveAdmin.register Product do
       row :price
       row :brand
       row :category
-      row :colors do |product|
-        product.colors.pluck(:color_name).join(', ')
-      end
+      # Agrega otras columnas aquí si es necesario
     end
   end
 

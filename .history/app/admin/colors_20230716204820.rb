@@ -1,20 +1,6 @@
 ActiveAdmin.register Color do
-  
+  ActiveAdmin.register Color do
     permit_params :hex_value, :color_name
-    config.filters = false
-
-  # Definir las columnas que deseas mostrar en la página de índice
-  index do
-    selectable_column
-    id_column
-    column :color_name
-    column :hex_value
-    # Aquí debes agregar la columna para la asociación product_colors
-    # Por ejemplo, si deseas mostrar la cantidad de product_colors, podrías hacer:
-    column :product_colors do |color|
-      color.product_colors.count
-    end
-    actions
   end
   
 

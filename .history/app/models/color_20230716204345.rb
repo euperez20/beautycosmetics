@@ -1,5 +1,5 @@
 class Color < ApplicationRecord
-    has_many :product_colors
+    has_many :product_color
     has_many :products, through: :product_colors
     
     def self.ransackable_attributes(auth_object = nil)
