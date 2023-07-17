@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
+  get 'home/index'
   ActiveAdmin.routes(self)
   resources :product_colors
   resources :colors
@@ -16,4 +18,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   root to: "home#index"
+  get 'contact', to: 'pages#contact'
+  get 'about', to: 'pages#about'
+
 end
