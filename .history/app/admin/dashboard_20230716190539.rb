@@ -10,15 +10,12 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
 
-    content do
-      para "Bienvenido al panel de administración de BeautyCosmetics."
-    end
 
 
 
 
 
-
+    
 
     # Here is an example of a simple dashboard with columns and panels.
     #

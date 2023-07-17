@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  ActiveAdmin.routes(self)
   resources :product_colors
   resources :colors
   resources :orders
