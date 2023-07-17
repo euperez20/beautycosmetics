@@ -34,7 +34,7 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # Update
+  # PATCH/PUT /categories/1 or /categories/1.json
   
   def update
     @category = Category.find(params[:id])

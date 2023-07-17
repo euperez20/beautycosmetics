@@ -1,7 +1,7 @@
 ActiveAdmin.register Category do
   permit_params :name, :other_attribute, :another_attribute
 
-  # Views
+  # Vi
   index do
     selectable_column
     column :id

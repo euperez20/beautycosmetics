@@ -34,8 +34,18 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # Update
-  
+  # PATCH/PUT /categories/1 or /categories/1.json
+  # def update
+  #   respond_to do |format|
+  #     if @category.update(category_params)
+  #       format.html { redirect_to category_url(@category), notice: "Category was successfully updated." }
+  #       format.json { render :show, status: :ok, location: @category }
+  #     else
+  #       format.html { render :edit, status: :unprocessable_entity }
+  #       format.json { render json: @category.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
   def update
     @category = Category.find(params[:id])
     if @category.update(category_params)
@@ -46,7 +56,7 @@ class CategoriesController < ApplicationController
   end
 
 
-  # DELETE 
+  # DELETE /categories/1 or /categories/1.json
   def destroy
     @category.destroy
 

@@ -1,7 +1,7 @@
 ActiveAdmin.register Category do
   permit_params :name, :other_attribute, :another_attribute
 
-  # Views
+  # Index View
   index do
     selectable_column
     column :id
@@ -20,7 +20,7 @@ ActiveAdmin.register Category do
   form do |f|
     f.inputs 'Category Details' do
       f.input :name
-      
+      # Agrega otros campos aquí si es necesario
     end
     f.actions
   end

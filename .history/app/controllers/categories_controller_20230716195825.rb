@@ -34,19 +34,29 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # Update
-  
+  # PATCH/PUT /categories/1 or /categories/1.json
+  # def update
+  #   respond_to do |format|
+  #     if @category.update(category_params)
+  #       format.html { redirect_to category_url(@category), notice: "Category was successfully updated." }
+  #       format.json { render :show, status: :ok, location: @category }
+  #     else
+  #       format.html { render :edit, status: :unprocessable_entity }
+  #       format.json { render json: @category.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
   def update
     @category = Category.find(params[:id])
     if @category.update(category_params)
-      redirect_to admin_categories_path, notice: "Categoría actualizada exitosamente."
+      redirect_to admin_categories_path, notice: "Categoria actualizada exitosamente."
     else
       render :edit
     end
   end
 
 
-  # DELETE 
+  # DELETE /categories/1 or /categories/1.json
   def destroy
     @category.destroy
 
@@ -58,15 +68,12 @@ class CategoriesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    # def set_category
-    #   @category = Category.find(params[:id])
-    # end
+    def set_category
+      @category = Category.find(params[:id])
+    end
 
     # Only allow a list of trusted parameters through.
-    # def category_params
-    #   params.require(:category).permit(:name)
-    # end
     def category_params
-      params.require(:category).permit(:name, :other_attribute) # Asegúrate de agregar aquí todos los atributos permitidos para actualizar.
+      params.require(:category).permit(:name)
     end
 end

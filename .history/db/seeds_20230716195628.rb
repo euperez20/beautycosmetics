@@ -14,5 +14,5 @@ if products.present? && colors.present?
     )
   end
 else
-  puts "No products or colors were found."
+  puts "No products or colors were found to create the product_colors table."
 end
