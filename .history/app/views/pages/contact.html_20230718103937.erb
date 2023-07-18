@@ -1,0 +1,20 @@
+<%# <h1>Contact Page</h1>
+<p>This is the contact page content.</p> %>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Beauty Cosmetics</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+
+</head>
+
+<div class="container">
+  <%= sanitize(@contact_page.content) %>
+</div>
+
+<div class="mt-4"> <a href="#" class="btn btn-primary me-3"><i class="fab fa-facebook-f"></i></a> <a href="#" class="btn btn-primary me-3"><i class="fab fa-instagram"></i></a> <a href="#" class="btn btn-primary"><i class="fab fa-twitter"></i></a> </div> </div>
+
