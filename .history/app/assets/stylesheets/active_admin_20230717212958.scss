@@ -11,7 +11,9 @@
 @import "active_admin/mixins";
 @import "active_admin/base";
 
+// app/assets/stylesheets/application.scss
 
+@import "bootstrap";
 
 
 // Overriding any non-variable Sass must be done after the fact.

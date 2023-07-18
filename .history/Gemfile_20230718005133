@@ -57,12 +57,7 @@ gem 'image_processing', '~> 1.11'
 gem 'bootstrap', '~> 5.0'
 
 gem 'webpacker', '~> 5.0' 
-
-gem 'json'
-
-gem 'kaminari-bootstrap'
-
-gem 'bootstrap4-kaminari-views'
+ 
 
 
 

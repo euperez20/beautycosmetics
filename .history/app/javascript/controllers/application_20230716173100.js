@@ -7,6 +7,3 @@ application.debug = false
 window.Stimulus   = application
 
 export { application }
-
-// import 'bootstrap/dist/js/bootstrap';
-// import 'bootstrap/dist/css/bootstrap';

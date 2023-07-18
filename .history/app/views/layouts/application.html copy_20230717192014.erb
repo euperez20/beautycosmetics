@@ -1,17 +1,9 @@
-<!-- app/views/layouts/application.html.erb -->
-
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Beauty Cosmetics</title>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
-  <%# <%= stylesheet_link_tag 'application', media: 'all' %> 
-  <%# <%= javascript_include_tag 'application' %> 
-
-      <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-
+  <title>Beauty</title>
+  <!-- Incluir estilos y scripts de Bootstrap -->
+  <!-- ... -->
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -25,7 +17,7 @@
           <a class="nav-link" href="/contact">Contacto</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/about">Sobre Nosotros1</a>
+          <a class="nav-link" href="/about">Sobre Nosotros</a>
         </li>
         <!-- Otros elementos del menú... -->
       </ul>
@@ -36,6 +28,4 @@
     <%= yield %>
   </div>
 </body>
-
-
 </html>

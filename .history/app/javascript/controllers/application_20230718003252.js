@@ -8,5 +8,5 @@ window.Stimulus   = application
 
 export { application }
 
-// import 'bootstrap/dist/js/bootstrap';
-// import 'bootstrap/dist/css/bootstrap';
+import 'bootstrap/dist/js/bootstrap';
+import 'bootstrap/dist/css/bootstrap';
