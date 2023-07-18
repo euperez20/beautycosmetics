@@ -15,6 +15,10 @@
  *= require_self
  */
  @import "bootstrap";
-
+ /* ...
+*= require custom
+*= require_tree .
+*= require_self
+*/
 
 
