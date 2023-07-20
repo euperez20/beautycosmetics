@@ -1,0 +1,33 @@
+<%= render 'shared/header' %>
+
+<div class="container">
+  <% if @category %>
+    <h1>Products in <%= @category.name %> category</h1>
+
+    <div class="row">
+      <% @products.each do |product| %>
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <% if product.image.attached? %>
+              <!-- Mostrar imagen adjunta utilizando Active Storage -->
+              <img src="<%= product.image.url %>" class="card-img-top" alt="<%= product.name %>">
+            <% elsif product.image_url.present? %>
+              <!-- Mostrar imagen utilizando el enlace URL -->
+              <img src="<%= product.image_url %>" class="card-img-top" alt="<%= product.name %>">
+            <% else %>
+              <!-- Mostrar una imagen de reemplazo si no hay imagen adjunta ni enlace URL -->
+              <img src="/assets/imagen_de_reemplazo.jpg" class="card-img-top" alt="<%= product.name %>">
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= product.name %></h5>
+              <p class="card-text"><%= product.description %></p>
+              <!-- Add any other product details you want to display -->
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p>No category found for show_productstest.</p>
+  <% end %>
+</div>

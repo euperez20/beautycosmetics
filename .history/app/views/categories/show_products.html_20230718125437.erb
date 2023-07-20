@@ -1,0 +1,9 @@
+<h1>Products in <%= @category.name %> category</h1>
+
+<% @products.each do |product| %>
+  <div class="product">
+    <h3><%= product.name %></h3>
+    <p><%= product.description %></p>
+    <!-- Agregar más detalles del producto aquí -->
+  </div>
+<% end %>

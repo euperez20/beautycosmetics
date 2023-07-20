@@ -1,0 +1,28 @@
+<%= render 'shared/header' %>
+
+<div class="container">
+  <% if @category %>
+    <h1>Products in <%= @category.name %> category</h1>
+
+    <div class="row">
+      <% @products.each do |product| %>
+        <div class="col-md-4">
+          <div class="card mb-4">
+            
+<%#  %>
+
+
+
+            <div class="card-body">
+              <h5 class="card-title"><%= product.name %></h5>
+              <p class="card-text"><%= product.description %></p>
+              <!-- Add any other product details you want to display -->
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p>No category found for show_products test.</p>
+  <% end %>
+</div>

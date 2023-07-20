@@ -1,0 +1,29 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render 'shared/header' %>
+
+<%= render @product %>
+
+<!-- app/views/products/show.html.erb -->
+<!-- app/views/products/show.html.erb -->
+<% if @product.image.attached? %>
+  <!-- Show attached image using Active Storage -->
+  <%= image_tag @product.image, class: 'card-img-top', alt: @product.name %>
+<% elsif @product.image.is_a?(String) && @product.image.start_with?('http') %>
+  <!-- Show image using the URL -->
+  <%= image_tag @product.image, class: 'card-img-top', alt: @product.name %>
+<% else %>
+  <p>No image available</p>
+<% end %>
+
+
+
+
+
+<%# 
+<div>
+  <%= link_to "Edit this product", edit_product_path(@product) %> |
+  <%= link_to "Back to products", products_path %>
+
+  <%= button_to "Destroy this product", @product, method: :delete %>
+</div> %>

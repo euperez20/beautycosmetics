@@ -1,0 +1,16 @@
+# app/controllers/pages_controller.rb
+class PagesController < ApplicationController
+    def contact
+      @contact_page = Page.find_by(title: 'Contact') # O el título que hayas usado en la tabla
+    end
+  
+    def about
+      @about_page = Page.find_by(title: 'About') # O el título que hayas usado en la tabla
+    end
+
+    def front
+      @featured_products = Product.where(featured: true).limit(6)
+      @new_products = Product.where('created_at >= ?', 3.days.ago).limit(6)
+    end
+  end
+  

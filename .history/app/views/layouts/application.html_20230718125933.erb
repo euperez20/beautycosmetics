@@ -1,0 +1,55 @@
+<!-- app/views/layouts/application.html.erb -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Beauty Cosmetics</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%# Fonts Awesome %>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-1234567890abcdefghijklmnopqrstuvwxyz" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+  
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">Beauty Cosmetics</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <%= link_to 'Home', root_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'About Us', about_path, class: "nav-link" %>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to 'Contact', contact_path, class: "nav-link" %>
+        </li>
+
+        <!-- Categories -->
+        <% @categories.each do |category| %>
+          <li class="nav-item">
+            <%= link_to category.name, category_products_path(category), class: "nav-link" %>
+          </li>
+        <% end %>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <div class="container">
+    <%= yield %>
+  </div>
+</body>
+
+</html>

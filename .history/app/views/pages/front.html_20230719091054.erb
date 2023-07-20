@@ -1,0 +1,45 @@
+<!-- app/views/pages/front.html.erb -->
+<div class="container">
+  <h1>Welcome to Beauty Cosmetics</h1>
+
+  <h2>Featured Products</h2>
+  <div class="row">
+    <% @featured_products.each do |product| %>
+      <div class="col-md-4">
+  <div class="card mb-4">
+    <% if product.image.attached? %>
+      <img src="<%= product.image.url %>" class="card-img-top" alt="<%= product.title %>">
+    <% else %>
+      <!-- Mostrar una imagen de reemplazo si no hay imagen adjunta -->
+      <img src="/assets/imagen_de_reemplazo.jpg" class="card-img-top" alt="<%= product.title %>">
+    <% end %>
+    <div class="card-body">
+      <h5 class="card-title"><%= product.name %></h5>
+      <p class="card-text"><%= product.description %></p>
+            <!-- Add any other product details you want to display -->
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <h4>New Products</h4>
+
+
+
+
+  <div class="row">
+    <% @new_products.each do |product| %>
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <img src="<%= product.image.url %>" class="card-img-top" alt="<%= product.name %>">
+          <div class="card-body">
+            <h5 class="card-title"><%= product.name %></h5>
+            <p class="card-text"><%= product.description %></p>
+            <!-- Add any other product details you want to display -->
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

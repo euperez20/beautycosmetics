@@ -1,0 +1,22 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render 'shared/header' %>
+
+<%= render @product %>
+
+<% if @product.image.attached? %>
+  <!-- Show attached image using Active Storage -->
+  <%= image_tag @product.image.url, class: 'card-img-top', alt: @product.name %>
+<% else %>
+  <!-- Show image using the URL -->
+  <p>No image available</p>
+<% end %>
+
+
+
+<div>
+  <%= link_to "Edit this product", edit_product_path(@product) %> |
+  <%= link_to "Back to products", products_path %>
+
+  <%= button_to "Destroy this product", @product, method: :delete %>
+</div>

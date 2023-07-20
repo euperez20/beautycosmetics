@@ -1,0 +1,47 @@
+<div id="<%= dom_id product %>">
+  <p>
+    <strong>Name:</strong>
+    <%= product.name %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= product.description %>
+  </p>
+
+  <p>
+    <strong>Price:</strong>
+    <%= product.price %>
+  </p>
+
+  <p>
+    <strong>Brand:</strong>
+    <%= product.brand %>
+  </p>
+
+  <%# <p>
+    <strong>Image:</strong>
+    <%= product.image %>
+  <%# </p>  %>
+
+<% if @product.image.attached? %>
+  <!-- Show attached image using Active Storage -->
+  <%= image_tag @product.image, class: 'card-img-top', alt: @product.name %>
+<% elsif @product.image.is_a?(String) && @product.image.start_with?('http') %>
+  <!-- Show image using the URL -->
+  <%= image_tag @product.image, class: 'card-img-top', alt: @product.name %>
+<% else %>
+  <p>No image available</p>
+<% end %>
+
+
+
+
+  <p>
+    <strong>Category:</strong>
+    <%= product.category_id %>
+    
+
+  </p>
+
+</div>

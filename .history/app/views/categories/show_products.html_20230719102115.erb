@@ -1,0 +1,35 @@
+
+<%= render 'shared/header' %>
+
+<div class="container">
+  <% if @category %>
+    <h1>Products in <%= @category.name %> category</h1>
+
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="categoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Select a category
+  </button>
+  <div class="dropdown-menu" aria-labelledby="categoryDropdown">
+    <% @categories.each do |category| %>
+      <%= link_to category.name, category_products_path(id: category.id), class: "dropdown-item" %>
+    <% end %>
+  </div>
+</div>
+
+    <div class="row">
+      <% @products.each do |product| %>
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <img src="<%= product.image.url %>" class="card-img-top" alt="<%= product.name %>">
+            <div class="card-body">
+              <h5 class="card-title"><%= product.name %></h5>
+              <p class="card-text"><%= product.description %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p>No category found.</p>
+  <% end %>
+</div>

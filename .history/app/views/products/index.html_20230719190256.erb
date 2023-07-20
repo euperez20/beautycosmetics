@@ -1,0 +1,29 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render 'shared/header' %>
+
+<h1>Products</h1>
+
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Select a category
+  </button>
+  <div class="dropdown-menu" aria-labelledby="categoryDropdown">
+    <%= link_to "All Categories", products_path, class: "dropdown-item" %>
+    <% @categories.each do |category| %>
+      <%= link_to category.name, category_products_path(category), class: "dropdown-item" %>
+    <% end %>
+  </div>
+</div>
+
+
+<div id="products">
+  <% @products.each do |product| %>
+    <%= render product %>
+    <p>
+      <%= link_to "Show this product", product %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New product", new_product_path %>
