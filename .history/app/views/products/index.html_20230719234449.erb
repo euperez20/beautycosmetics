@@ -1,0 +1,79 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render 'shared/header' %>
+
+<h1>Products</h1>
+
+<div class="dropdown">
+  <button id="categoryDropdown" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Select a category
+  </button>
+  <div class="dropdown-menu" aria-labelledby="categoryDropdown">
+    <%= link_to "All Categories", products_path, class: "dropdown-item" %>
+    <% @categories.each do |category| %>
+      <%= link_to category.name, products_path(category_id: category.id), class: "dropdown-item" %>
+    <% end %>
+  </div>
+</div>
+
+<div id="products">
+  <!-- Search form -->
+  <%= form_tag(products_path, method: :get, class: 'form-inline my-3') do %>
+    <%= text_field_tag :search, params[:search], class: 'form-control mr-sm-2', placeholder: 'Search by name' %>
+    <%= submit_tag 'Search', class: 'btn btn-outline-success my-2 my-sm-0' %>
+  <% end %>
+
+  <!-- Products cards -->
+  <div class="row">
+    <% @products.each do |product| %>
+      <div class="col-md-3 mb-4">
+        <div class="card">
+          
+            <!-- Show a placeholder image if no image is attached or URL provided -->
+            <%# <%= image_tag 'generic_image.png', class: 'card-img-top' %> 
+         <% if product.image.is_a?(String) && product.image.start_with?('http') %>
+              <!-- Show image using the URL --> 
+              <%= image_tag product.image, class: 'card-img-top', alt: product.name %>
+
+              <% elsif product.image.present? %>
+            <!-- Show image using the URL -->
+            <%= image_tag product.image_url, class: 'card-img-top' %>
+            
+            <% else %>
+
+                <p>No image available</p>
+
+            <% end %>
+
+
+
+          <div class="card-body">
+            <h5 class="card-title"><%= product.name %></h5>
+            <p class="card-text"><%= product.description %></p>
+            <!-- Add any other product details you want to display -->
+          </div>
+          <div class="card-footer">
+            <%= link_to "Show this product", product, class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+  <!-- Pagination -->
+  <div class="pagination justify-content-center">
+    <%= paginate @products, theme: 'twitter-bootstrap-4' %>
+  </div>
+</div>
+
+<%# OLD %>
+<%# <div id="products"> %>
+  <%# <% @products.each do |product| %> 
+    <%#<%= render product %>
+    <%# <p> %>
+      <%#<%= link_to "Show this product", product %>
+    <%# </p> %>
+ <%# <% end %>
+<%# </div> %>
+
+<%# <%= link_to "New product", new_product_path %> 

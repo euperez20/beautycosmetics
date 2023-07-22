@@ -1,0 +1,35 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render 'shared/header' %>
+
+<%= render @product %>
+
+
+
+
+<!-- app/views/products/show.html.erb -->
+<div class="product-image-container">
+  <% if @product.image.attached? %>
+    <!-- Show attached image using Active Storage -->
+    <%= image_tag url_for(@product.image), class: 'card-img-top', alt: @product.name %>
+  <% elsif @product.image.is_a?(String) 
+    <!-- Show image using the URL -->
+    <%= image_tag @product.image, class: 'card-img-top', alt: @product.name %>
+  <% else %>
+    <!-- Show a placeholder image if no image is attached or URL provided -->
+    <%= image_tag 'generic_image.png', class: 'card-img-top', alt: @product.name %>
+  <% end %>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

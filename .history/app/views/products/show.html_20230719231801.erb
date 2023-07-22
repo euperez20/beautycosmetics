@@ -1,0 +1,21 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render 'shared/header' %>
+
+<%= render @product %>
+
+
+<!-- app/views/products/show.html.erb -->
+
+<% if @product.image.is_a?(String) && @product.image.start_with?('http') %>
+  <!-- Show image using the URL -->
+  <%= image_tag @product.image, class: 'card-img-top', alt: @product.name %>
+<% else %>
+  <p>No image available</p>
+<% end %>
+
+
+
+
+
+

@@ -1,0 +1,32 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render 'shared/header' %>
+
+<%= render @product %>
+
+
+
+<% if product.image.is_a?(String) && product.image.start_with?('http') %>
+  <!-- Show image using the URL -->
+  <div class="image-container">
+    <%= image_tag product.image, class: 'card-img-top', alt: product.name %>
+  </div>
+<% elsif product.image.attached? %>
+  <!-- Show attached image using Active Storage -->
+  <div class="image-container">
+    <%= image_tag url_for(product.image), class: 'card-img-top', alt: product.name %>
+  </div>
+<% else %>
+  <div class="image-container">
+    <p>No image available</p>
+  </div>
+<% end %>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,24 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render 'shared/header' %>
+
+<%= render @product %>
+
+
+
+<div class="image-container">
+  <% if customer@product.image.attached? %>
+      <%= image_tag url_for(.image), class: "customer-image" %>
+    <% else %>
+      <span class="customer-placeholder-image">No image available</span>
+    <% end %>
+</div>
+
+
+
+
+
+
+
+
+
