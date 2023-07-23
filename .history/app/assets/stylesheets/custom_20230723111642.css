@@ -46,6 +46,6 @@
 
   .card-text.price {
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.2rem; /* Puedes ajustar este valor según tus preferencias */
   }
   

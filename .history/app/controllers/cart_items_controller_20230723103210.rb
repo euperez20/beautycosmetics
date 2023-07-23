@@ -34,20 +34,5 @@ class CartItemsController < ApplicationController
         @cart_count = current_user.cart_items.sum(:quantity) if user_signed_in?
       end
 
-      def update
-        @cart_item = CartItem.find(params[:id])
-        if @cart_item.update(cart_item_params)
-          redirect_to cart_items_path, notice: 'Item updated successfully.'
-        else
-          render :index
-        end
-      end
-      
-      private
-      
-      def cart_item_params
-        params.require(:cart_item).permit(:quantity)
-      end
-
 
 end

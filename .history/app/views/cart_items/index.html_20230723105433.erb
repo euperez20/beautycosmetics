@@ -41,7 +41,7 @@
     </tbody>
     <tfoot>
       <tr>
-        <td colspan="3" class="text-right">Total Before Taxes:</td>
+        <td colspan="3" class="text-right">Total before :</td>
         <td>$<%= @cart_items.sum { |cart_item| cart_item.product.price * cart_item.quantity } %></td>
         <td></td>
       </tr>

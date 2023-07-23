@@ -16,8 +16,7 @@ class CartItemsController < ApplicationController
       end
   
       if @cart_item.save
-        # redirect_to cart_items_path, notice: 'Item added to cart!'
-        redirect_back(fallback_location: root_path, notice: 'Item added to cart!')
+        redirect_to cart_items_path, notice: 'Item added to cart!'
       else
         flash[:alert] = 'Unable to add item to cart.'
         redirect_back(fallback_location: root_path)
@@ -32,21 +31,6 @@ class CartItemsController < ApplicationController
 
       def cart_count
         @cart_count = current_user.cart_items.sum(:quantity) if user_signed_in?
-      end
-
-      def update
-        @cart_item = CartItem.find(params[:id])
-        if @cart_item.update(cart_item_params)
-          redirect_to cart_items_path, notice: 'Item updated successfully.'
-        else
-          render :index
-        end
-      end
-      
-      private
-      
-      def cart_item_params
-        params.require(:cart_item).permit(:quantity)
       end
 
 

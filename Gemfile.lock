@@ -95,6 +95,8 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 2.11.6, < 3)
       sassc-rails (>= 2.0.0)
+    bootstrap-icons (1.0.13)
+      nokogiri (~> 1)
     bootstrap4-kaminari-views (1.0.1)
       kaminari (>= 0.13)
       rails (>= 3.1)
@@ -326,6 +328,7 @@ DEPENDENCIES
   activeadmin
   bootsnap
   bootstrap (~> 5.0)
+  bootstrap-icons
   bootstrap4-kaminari-views
   capybara
   ckeditor
