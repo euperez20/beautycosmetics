@@ -1,0 +1,7 @@
+class Province < ApplicationRecord
+    has_many :users
+
+    def self.ransackable_attributes(auth_object = nil)
+        super + %w[name other_attribute] # Agrega los atributos que deseas permitir como buscables
+      end
+end
