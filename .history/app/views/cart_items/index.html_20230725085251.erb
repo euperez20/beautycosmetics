@@ -1,0 +1,54 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render 'shared/header' %>
+
+<h1>Shopping Cart</h1>
+
+<% if @cart_items.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Price Each</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart_items.each do |cart_item| %>
+        <tr>
+          <td><%= cart_item.product.name %></td>
+          <td>$<%= cart_item.product.price %></td>
+          <td>
+            <%= form_with(model: cart_item, local: true) do |form| %>
+              <div class="input-group mb-3">
+                <%= form.number_field :quantity, class: 'form-control', min: 1 %>
+                <div class="input-group-append">
+                  <%= form.submit 'Update', class: 'btn btn-primary' %>
+                </div>
+              </div>
+            <% end %>
+          </td>
+          <td>$<%= cart_item.product.price * cart_item.quantity %></td>
+          <td>
+            <%= form_with(model: cart_item, url: cart_item_path(cart_item), method: :delete, local: true, data: { confirm: 'Are you sure you want to remove this item from your cart?' }) do |form| %>
+              <%= form.submit 'Remove', class: 'btn btn-danger' %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3" class="text-right">Total Before Taxes:</td>
+        <td>$<%= @cart_items.sum { |cart_item| cart_item.product.price * cart_item.quantity } %></td>
+        <td></td>
+      </tr>
+    </tfoot>
+  </table>
+<% else %>
+  <p>Your cart is empty.</p>
+<% end %>
+
+<%# <%= link_to 'Checkout', new_order_path, class: 'btn btn-primary' %> %>

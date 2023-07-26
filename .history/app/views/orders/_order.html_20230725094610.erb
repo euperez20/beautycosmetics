@@ -1,0 +1,28 @@
+
+<%# Test %>
+
+<h1>Order Details</h1>
+
+<p><strong>User:</strong> <%= @order.user.name %></p>
+<p><strong>Status:</strong> <%= @order.status %></p>
+
+<h2>Order Items:</h2>
+<table>
+  <tr>
+    <th>Product</th>
+    <th>Quantity</th>
+    <th>Price</th>
+  </tr>
+  <% @order.order_items.each do |item| %>
+    <tr>
+      <td><%= item.product.name %></td>
+      <td><%= item.quantity %></td>
+      <td><%= number_to_currency(item.price) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><strong>Subtotal:</strong> <%= number_to_currency(@order.total_amount) %></p>
+<p><strong>GST:</strong> <%= number_to_currency(@order.gst) %></p>
+<p><strong>PST:</strong> <%= number_to_currency(@order.pst) %></p>
+<p><strong>Total:</strong> <%= number_to_currency(@order.total_amount_with_taxes) %></p>
