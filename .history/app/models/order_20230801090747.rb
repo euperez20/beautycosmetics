@@ -13,16 +13,16 @@ class Order < ApplicationRecord
 
 
   def calculate_taxes(user_province)
-    # Get Province from user
+    # Obtener la provincia del usuario
     province = Province.find_by(id: user_province)
 
-    # Tax Calculation
+    # Calcular los impuestos y el total de la orden
     if total_amount && province && province.gst_rate && province.pst_rate && province.hst_rate
       self.gst = total_amount * province.gst_rate
       self.pst = total_amount * province.pst_rate
       self.hst = total_amount * province.hst_rate
 
-      # Total Taxes
+      # Calcular el total con impuestos
       if province.hst_applicable
         self.total_amount_with_taxes = total_amount + hst
       else

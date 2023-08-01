@@ -13,7 +13,7 @@ class Order < ApplicationRecord
 
 
   def calculate_taxes(user_province)
-    # Get Province from user
+    # Obtener la provincia del usuario
     province = Province.find_by(id: user_province)
 
     # Tax Calculation

@@ -73,16 +73,18 @@ class OrdersController < ApplicationController
       @order.calculate_taxes(current_user.province_id)
 
       
-      if @order.save        
+      if @order.save
+        
         cart.destroy_all
         redirect_to @order, notice: 'Order successfully created.'
       else
         redirect_to cart_path, alert: 'Error creating order. Please try again.'
       end
     end
-  end  
-
+  end
   
+
+  # PATCH/PUT /orders/1 or /orders/1.json
   def update
     respond_to do |format|
       if @order.update(order_params)
@@ -95,6 +97,7 @@ class OrdersController < ApplicationController
     end
   end
 
+  # DELETE /orders/1 or /orders/1.json
   def destroy
     @order.destroy
 
@@ -110,7 +113,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
   
-    # Use callbacks 
+    # Use callbacks to share common setup or constraints between actions.
     def set_order
       @order = Order.find(params[:id])
     end

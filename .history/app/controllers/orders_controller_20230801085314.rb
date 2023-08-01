@@ -61,28 +61,30 @@ class OrdersController < ApplicationController
         @order.order_items.build(product: cart_item.product, quantity: cart_item.quantity, price: cart_item.product.price)
       end
 
-      
+      # Asignar la dirección y la provincia del usuario a la orden
       @order.name = current_user.name
       @order.address = current_user.address
 
-     
-      province = Province.find_by(name: current_user.province.name)
-      @order.province = province if province
+      # Buscar el objeto Province asociado al nombre de la provincia en la base de datos
+    province = Province.find_by(name: current_user.province.name)
+    @order.province = province if province
 
-      
+      # Calcular los impuestos y el total de la orden
       @order.calculate_taxes(current_user.province_id)
 
-      
-      if @order.save        
+      # Guardar la orden en la base de datos
+      if @order.save
+        # Vaciar el carrito después de crear la orden
         cart.destroy_all
         redirect_to @order, notice: 'Order successfully created.'
       else
         redirect_to cart_path, alert: 'Error creating order. Please try again.'
       end
     end
-  end  
-
+  end
   
+
+  # PATCH/PUT /orders/1 or /orders/1.json
   def update
     respond_to do |format|
       if @order.update(order_params)
@@ -95,6 +97,7 @@ class OrdersController < ApplicationController
     end
   end
 
+  # DELETE /orders/1 or /orders/1.json
   def destroy
     @order.destroy
 
@@ -110,7 +113,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
   
-    # Use callbacks 
+    # Use callbacks to share common setup or constraints between actions.
     def set_order
       @order = Order.find(params[:id])
     end

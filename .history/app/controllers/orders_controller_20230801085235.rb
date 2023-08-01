@@ -45,44 +45,48 @@ class OrdersController < ApplicationController
       
       cart = current_user.cart_items
 
-      # Check province
+      # Verificar si el usuario tiene una provincia y una dirección válida
       if current_user.province.nil? || current_user.address.blank?
         flash[:alert] = 'You must have a valid province and address in your profile before checkout.'
         redirect_to cart_path
         return
       end
-     
+
+      # Calcular el total de la orden sumando el precio de cada ítem en el carrito
       total_amount = cart.sum { |cart_item| cart_item.product.price * cart_item.quantity }
-      
+
+      # Crear una nueva orden asociada al usuario con el total calculado
       @order = current_user.orders.build(total_amount: total_amount, status: 'pending')
 
-      # Add elements to order
+      # Agregar cada elemento del carrito como un ítem de la orden
       cart.each do |cart_item|
         @order.order_items.build(product: cart_item.product, quantity: cart_item.quantity, price: cart_item.product.price)
       end
 
-      
+      # Asignar la dirección y la provincia del usuario a la orden
       @order.name = current_user.name
       @order.address = current_user.address
 
-     
-      province = Province.find_by(name: current_user.province.name)
-      @order.province = province if province
+      # Buscar el objeto Province asociado al nombre de la provincia en la base de datos
+    province = Province.find_by(name: current_user.province.name)
+    @order.province = province if province
 
-      
+      # Calcular los impuestos y el total de la orden
       @order.calculate_taxes(current_user.province_id)
 
-      
-      if @order.save        
+      # Guardar la orden en la base de datos
+      if @order.save
+        # Vaciar el carrito después de crear la orden
         cart.destroy_all
         redirect_to @order, notice: 'Order successfully created.'
       else
         redirect_to cart_path, alert: 'Error creating order. Please try again.'
       end
     end
-  end  
-
+  end
   
+
+  # PATCH/PUT /orders/1 or /orders/1.json
   def update
     respond_to do |format|
       if @order.update(order_params)
@@ -95,6 +99,7 @@ class OrdersController < ApplicationController
     end
   end
 
+  # DELETE /orders/1 or /orders/1.json
   def destroy
     @order.destroy
 
@@ -110,7 +115,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
   
-    # Use callbacks 
+    # Use callbacks to share common setup or constraints between actions.
     def set_order
       @order = Order.find(params[:id])
     end
