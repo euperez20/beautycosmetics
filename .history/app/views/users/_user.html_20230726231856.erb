@@ -1,0 +1,31 @@
+<div id="<%= dom_id(user) %>" class="card mb-4">
+  <div class="card-body">
+    <h5 class="card-title">User Information</h5>
+
+    <div class="row">
+      <div class="col-md-6">
+        <strong>Name:</strong>
+        <%= user.name %>
+      </div>
+
+      <div class="col-md-6">
+        <strong>Email:</strong>
+        <%= user.email %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <strong>Address:</strong>
+        <%= user.address %>
+      </div>
+
+      <div class="col-md-6">
+        <strong>Province:</strong>
+        <%= user.province.name %>
+      </div>
+    </div>
+
+  </div>
+</div>
+

@@ -1,0 +1,45 @@
+<div id="<%= dom_id product %>">
+  <p>
+    <strong>Name:</strong>
+    <%= product.name %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= product.description %>
+  </p>
+
+  <p>
+    <strong>Price:</strong>
+    <%= product.price %>
+  </p>
+
+  <p>
+    <strong>Brand:</strong>
+    <%= product.brand %>
+  </p>
+
+  <p>
+    <strong>Category:</strong>
+    <%= product.category.name %>
+    
+
+  </p>
+
+
+  
+<!-- app/views/products/show.html.erb -->
+<div class="product-image-container">
+  <% if product.image.attached? %>
+    <!-- Show attached image using Active Storage -->
+    <%= image_tag url_for(product.image), class: "img-fluid", alt: product.name %>
+  <% elsif product.image.is_a?(String) && product.image.start_with?('http') %>
+    <!-- Show image using the URL -->
+    <%= image_tag product.image, class: "img-fluid", alt: product.name %>
+  <% else %>
+    <!-- Show a placeholder image if no image is attached or URL provided -->
+    <%= image_tag 'generic_image.png', class: "img-fluid", alt: product.name %>
+  <% end %>
+</div>
+
+</div>

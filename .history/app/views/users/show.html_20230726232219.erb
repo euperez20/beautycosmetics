@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+<%= render 'shared/header' %>
+
+<%= render @user %>
+
+<div>
+  <%= link_to "Edit Information", edit_user_path(@user), class="btn btn-primary" %> |
+  <%# <%= link_to "Back to users", users_path %> 
+
+  
+</div>

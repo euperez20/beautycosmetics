@@ -1,0 +1,19 @@
+<%# <h1>Contact Page</h1>
+<p>This is the contact page content.</p> %>
+<%= render 'shared/header' %>
+<br>
+
+<div class="shadow p-3 mb-5 bg-body-tertiary rounded">
+
+<div class="container">
+  <%= sanitize(@contact_page.content) %>
+</div>
+
+<div>
+
+<div class="social-icons">
+  <a href="#" class="btn btn-link"><i class="bi bi-facebook"></i></a>
+  <a href="#" class="btn btn-link"><i class="bi bi-instagram"></i></a>
+  <a href="#" class="btn btn-link"><i class="bi bi-twitter"></i></a>
+</div>
+

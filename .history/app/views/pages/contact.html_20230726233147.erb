@@ -1,0 +1,33 @@
+<%# <h1>Contact Page</h1>
+<p>This is the contact page content.</p> %>
+<%= render 'shared/header' %>
+
+
+<div class="container">
+  <%= sanitize(@contact_page.content) %>
+</div>
+
+<div>
+
+<div class="social-icons">
+  <a href="#" class="btn btn-link"><i class="fab fa-instagram"></i></a>
+  <a href="#" class="btn btn-link"><i class="fab fa-facebook"></i></a>
+  <a href="#" class="btn btn-link"><i class="fab fa-twitter"></i></a>
+</div>
+En este ejemplo, hemos agregado un nuevo div con la clase social-icons para contener los enlaces de los iconos de redes sociales. Luego, utilizamos las clases de FontAwesome para agregar los iconos correspondientes a los enlaces.
+
+La clase fab indica que estamos utilizando iconos de marcas en FontAwesome, seguida del nombre del ícono específico, como fa-instagram, fa-facebook y fa-twitter.
+
+Las clases btn y btn-link son clases de Bootstrap para dar estilo a los enlaces como botones simples y eliminar el estilo predeterminado del enlace.
+
+Asegúrate de ajustar las rutas de los enlaces (href) para que apunten a las páginas reales de tus perfiles en Instagram, Facebook y Twitter.
+
+Con esto, deberías poder mostrar los iconos de redes sociales de manera moderna y estilizada en tu página. Puedes personalizar el tamaño, color y otros estilos de los iconos según tus preferencias utilizando las clases y opciones de FontAwesome.
+
+
+
+
+
+
+
+
