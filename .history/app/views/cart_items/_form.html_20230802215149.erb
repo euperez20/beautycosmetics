@@ -1,0 +1,10 @@
+
+<%# Modifications %>
+<%# <%= form_with(model: cart_item, url: cart_item_path(cart_item), method: :patch, local: true) do |form| %>
+  <div class="input-group mb-3">
+    <%= form.number_field :quantity, class: 'form-control', min: 1 %>
+    <div class="input-group-append">
+      <%= form.button 'Update', type: :submit, class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %> %>

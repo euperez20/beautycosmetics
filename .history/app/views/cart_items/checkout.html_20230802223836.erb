@@ -1,0 +1,23 @@
+
+<h1>Checkout</h1>
+
+<% if @checkout_data[:gst].present? %>
+  <h2>Taxes:</h2>
+  <p>GST: <%= number_to_currency(@checkout_data[:gst]) %></p>
+  <p>PST: <%= number_to_currency(@checkout_data[:pst]) %></p>
+  <p>HST: <%= number_to_currency(@checkout_data[:hst]) %></p>
+<% end %>
+
+<h2>Total with Taxes: <%= number_to_currency(@checkout_data[:total_amount_with_taxes]) %></h2>
+
+<%= form_tag checkout_cart_items_path, method: :post do %>
+  <div class="field">
+    <%= label_tag :province_id, 'Select a province:' %>
+    <%= select_tag :province_id, options_from_collection_for_select(@provinces, :id, :name) %>
+  </div>
+
+  <%= submit_tag 'Calculate Taxes and Proceed to Payment' %>
+<% end %>
+
+  <%= form.submit 'Proceed to Payment' %>
+<% end %>

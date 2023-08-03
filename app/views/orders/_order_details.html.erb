@@ -1,0 +1,13 @@
+<!-- _order_details.html.erb -->
+<div class="mb-3">
+  <strong>Subtotal:</strong> <%= number_to_currency(order.total_amount) %>
+</div>
+<div class="mb-3">
+  <strong>GST:</strong> <%= number_to_currency(order.gst) %>
+</div>
+<div class="mb-3">
+  <strong>PST:</strong> <%= number_to_currency(order.pst) %>
+</div>
+<div class="mb-4">
+  <strong>Total:</strong> <%= number_to_currency(order.total_amount_with_taxes) %>
+</div>

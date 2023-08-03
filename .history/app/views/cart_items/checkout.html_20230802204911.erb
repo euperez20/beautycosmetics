@@ -1,0 +1,16 @@
+<!-- app/views/cart_items/checkout.html.erb -->
+<h1>Checkout</h1>
+
+<h2>Total with Taxes: <%= number_to_currency(@cart_item.total_amount_with_taxes) %></h2>
+
+<%= form_with(model: @cart_item, url: create_order_path) do |form| %>
+  <%= form.hidden_field :name %>
+  <%= form.hidden_field :address %>
+  <%= form.hidden_field :province_id %>
+  <%= form.hidden_field :total_amount_with_taxes %>
+  <%= form.hidden_field :gst %>
+  <%= form.hidden_field :pst %>
+  <%= form.hidden_field :hst %>
+
+  <%= form.submit 'Proceed to Payment' %>
+<% end %>

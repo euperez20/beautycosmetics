@@ -1,0 +1,48 @@
+<!-- app/views/cart_items/index.html.erb -->
+<h1>Cart Items</h1>
+
+<h2>Subtotal: <%= number_to_currency(@subtotal) %></h2>
+
+<table>
+  <tr>
+    <th>Product</th>
+    <th>Quantity</th>
+    <th>Price</th>
+    <th>Actions</th>
+  </tr>
+
+  <% @cart_items.each do |cart_item| %>
+    <tr>
+      <td><%= cart_item['name'] %></td>
+      <td><%= cart_item['quantity'] %></td>
+      <td><%= number_to_currency(cart_item['price'].to_f) %></td>
+
+      <td>
+        <%= button_to "Remove", cart_item_path(cart_item['product_id']), method: :delete, data: { confirm: 'Remove this product from the cart?' } %>
+      </td>
+
+      
+
+
+    </tr>
+  <% end %>
+</table>
+
+<%= form_with(model: @cart_item, url: cart_items_path) do |form| %>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :province_id, 'Select a province:' %>
+    <%= form.select :province_id, options_from_collection_for_select(@provinces, :id, :name) %>
+  </div>
+
+  <%= form.submit 'Calculate Taxes and Proceed to Payment' %>
+<% end %>

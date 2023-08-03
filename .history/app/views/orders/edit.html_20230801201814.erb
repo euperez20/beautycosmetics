@@ -1,0 +1,54 @@
+ <h1>Edit Order</h1>
+
+<%= render "form", order: @order %>
+
+
+
+<br>
+
+<div>
+  <%= link_to "Show this order", @order %> |
+  <%= link_to "Back to orders", orders_path %>
+</div> 
+
+
+<script>
+  $(document).ready(function () {
+    // Obtener elementos relevantes del DOM
+    var provinceSelect = $("#province-select");
+    var totalAmountElement = $("#total-amount");
+    var gstElement = $("#gst");
+    var pstElement = $("#pst");
+    var totalWithTaxesElement = $("#total-with-taxes");
+
+    // Función para recalcular impuestos y actualizar la tabla
+    function updateOrderDetails() {
+      var provinceId = provinceSelect.val();
+
+      // Realizar una solicitud AJAX para obtener los nuevos valores de impuestos y total
+      $.ajax({
+        type: "GET",
+        url: "/calculate_taxes", // Ruta en el servidor para calcular impuestos y total
+        data: { province_id: provinceId }, // Enviar el ID de la provincia al servidor
+        success: function (data) {
+          // Actualizar los elementos de la tabla con los nuevos valores
+          totalAmountElement.text(data.total_amount);
+          gstElement.text(data.gst);
+          pstElement.text(data.pst);
+          totalWithTaxesElement.text(data.total_amount_with_taxes);
+        },
+        error: function (xhr, status, error) {
+          console.error("Error al calcular impuestos: ", error);
+        },
+      });
+    }
+
+    // Asignar el evento onChange al campo de selección de provincia
+    provinceSelect.change(function () {
+      updateOrderDetails();
+    });
+
+    // Llamar a la función inicialmente para calcular e inicializar los valores de la tabla
+    updateOrderDetails();
+  });
+</script>

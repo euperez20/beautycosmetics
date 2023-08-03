@@ -1,0 +1,59 @@
+
+<p class="text-success"><%= notice %></p>
+
+<%= render 'shared/header' %>
+
+<div class="container mt-5">
+  <h2>Cart Items</h2>
+
+  <h2>Subtotal: <%= number_to_currency(@subtotal) %></h2>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Product</th>    
+        <th>Price</th>    
+        <th>Quantity</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart_items.each do |cart_item| %>
+        <tr>
+          <td><%= Product.find(cart_item['product_id']).name %></td>
+          <td><%= number_to_currency(cart_item['price'].to_f) %></td>
+          <td>
+            <%= form_tag cart_item_path(cart_item['product_id']), method: :put, class: 'd-inline' do %>
+              <%= hidden_field_tag :product_id, cart_item['product_id'] %>
+              <%= number_field_tag :quantity, cart_item['quantity'], min: 1, step: 1, class: 'form-control d-inline-block w-auto' %>
+              <%= submit_tag 'Update', class: 'btn btn-primary btn-sm' %>
+            <% end %>
+          </td>
+          <td>
+            <%= button_to "Remove", { action: :remove_from_cart, product_id: cart_item['product_id'] }, method: :delete, data: { confirm: 'Remove this product from the cart?' }, class: 'btn btn-danger btn-sm' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= form_with(model: @cart_item, url: cart_items_path) do |form| %>
+    <div class="form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :address %>
+      <%= form.text_field :address, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :province_id, 'Select a province:' %>
+      <%= form.select :province_id, options_from_collection_for_select(@provinces, :id, :name), { include_blank: true }, class: 'form-control' %>
+    </div>
+
+    <br>
+    <%= form.submit 'Calculate Taxes', class: 'btn btn-primary' %>
+  <% end %>
+</div>

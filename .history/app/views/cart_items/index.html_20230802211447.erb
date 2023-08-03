@@ -1,0 +1,27 @@
+<!-- app/views/cart_items/index.html.erb -->
+<h1>Cart Items</h1>
+
+<h2>Subtotal: <%= number_to_currency(@subtotal) %></h2>
+
+<%= form_with(model: @cart_item, url: cart_items_path) do |form| %>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :province_id, 'Select a province:' %>
+    <%= form.select :province_id, options_from_collection_for_select(@provinces, :id, :name) %>
+  </div>
+
+
+
+
+
+  <%= form.submit 'Calculate Taxes and Proceed to Payment' %>
+<% end %>
