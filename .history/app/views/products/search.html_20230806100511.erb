@@ -1,0 +1,13 @@
+<!-- views/products/search.html.erb -->
+
+<h1>Search Results</h1>
+
+<% if @products.any? %>
+  <ul>
+    <% @products.each do |product| %>
+      <li><%= product.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No products found.</p>
+<% end %>

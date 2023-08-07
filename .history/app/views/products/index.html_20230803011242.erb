@@ -1,0 +1,68 @@
+<!-- app/views/products/index.html.erb -->
+
+<p style="color: green"><%= notice %></p>
+
+<%= render 'shared/header' %>
+
+<div class="container my-4">
+  <h1>Products</h1>
+
+<%# Search by %>
+<div class="dropdown">
+  <button id="categoryDropdown" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <% if @selected_category %>
+      <%= @selected_category.name %>
+    <% else %>
+      All Categories
+    <% end %>
+  </button>
+  <div class="dropdown-menu" aria-labelledby="categoryDropdown">
+    <%= link_to "All Categories", products_path, class: "dropdown-item" %>
+    <% @categories.each do |category| %>
+      <%= link_to category.name, products_path(category_id: category.id), class: "dropdown-item" %>
+    <% end %>
+  </div>
+</div>
+
+
+  <!-- Search form -->
+  <%= form_tag(products_path, method: :get, class: 'form-inline my-3') do %>
+    <%= text_field_tag :search, params[:search], class: 'form-control me-2', placeholder: 'Search by name' %>
+    <%= submit_tag 'Search', class: 'btn btn-outline-success' %>
+  <% end %>
+
+  <!-- Products cards -->
+  <div class="row">
+    <% @products.each do |product| %>
+      <div class="col-md-3 mb-4">
+        <div class="card h-100">
+
+
+          <!-- <% if product.image.is_a?(String) && product.image.start_with?('http') %>
+            <!-- Show image using the URL -->
+            <%= image_tag product.image, class: 'card-img-top', alt: product.name %>
+          <% else %>
+            
+            <%= image_tag 'generic_image.png', class: 'card-img-top' %>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to product.name, product %></h5>
+            <p>Category: <%= product.category.name %></p>
+            <p class="card-text"><%= truncate(product.description, length: 150, separator: ' ', omission: '...') %></p>
+            <p class="card-text price">$<%= product.price %></p>
+
+          </div>
+          <div class="card-footer">
+            <%= button_to 'Add to cart', cart_items_path(product_id: product.id), method: :post, class: "btn btn-light" %>
+            
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Pagination -->
+  <div class="d-flex justify-content-center">
+    <%= paginate @products, theme: 'twitter-bootstrap-4' %>
+  </div>
+</div>

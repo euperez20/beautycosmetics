@@ -1,0 +1,33 @@
+
+<p style="color: green"><%= notice %></p>
+
+<%= render 'shared/header' %>
+
+<!-- categories/index.html.erb -->
+<h1>All Categories</h1>
+
+<% @categories.each do |category| %>
+  <h3><%= category.name %></h3>
+  <%= link_to "Show Products", category_path(category) %>
+<% end %>
+
+
+
+
+
+
+
+<!-- <p style="color: green"><%= notice %></p>
+
+<h1>Categories</h1>
+
+<div id="categories">
+  <% @categories.each do |category| %>
+    <%= render category %>
+    <p>
+      <%= link_to "Show this category", category %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New category", new_category_path %> -->

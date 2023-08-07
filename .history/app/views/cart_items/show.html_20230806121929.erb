@@ -1,0 +1,20 @@
+<h1>Detalles del elemento del carrito</h1>
+
+<% if @cart_items.any? %>
+  <ul>
+    <% @cart_items.each do |item| %>
+      <li>
+        Nombre del producto: <%= item['product_name'] %>
+        Cantidad: <%= item['quantity'] %>
+        Precio: <%= item['price'] %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No hay productos en el carrito.</p>
+<% end %>
+
+<p>Nombre del usuario: <%= @user_name %></p>
+<p>Dirección del usuario: <%= @user_address %></p>
+<p>Provincia seleccionada: <%= @province_name %></p>
+<p>Total después de impuestos: <%= @total_amount_with_taxes %></p>

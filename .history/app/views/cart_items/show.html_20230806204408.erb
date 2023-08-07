@@ -1,0 +1,36 @@
+<h3>Pre-Order</h3>
+
+<p>Customer: <%= session[:user_name] %></p>
+<p>Address: <%= session[:user_address] %></p>
+<p>Province: <%= Province.find_by(id: session[:province_id])&.name %></p>
+
+<p>Total GST: <%= number_to_currency(session[:total_gst]) %></p>
+<p>Total PST: <%= number_to_currency(session[:total_pst]) %></p>
+<p>Total HST: <%= number_to_currency(session[:total_hst]) %></p>
+<p>Total + Taxes: <%= number_to_currency(session[:total_amount_with_taxes]) %></p>
+
+
+<% if @cart_items.any? %>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart_items.each do |item| %>
+        <% product = Product.find_by(id: item['product_id']) %>
+        <% next unless product %>
+        <tr>
+          <td><%= product.name %></td>
+          <td><%= item['quantity'] %></td>
+          <td><%= number_to_currency(item['price'].to_f) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No hay productos en el carrito.</p>
+<% end %>

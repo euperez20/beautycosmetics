@@ -1,0 +1,71 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render 'shared/header' %>
+<h1>Search Results</h1>
+
+<% if @products.any? %>
+  <ul>
+    <% @products.each do |product| %>
+      <li><%= product.name %></li>
+    <% end %>
+  </ul>
+
+ <!-- Pagination -->
+  <div class="d-flex justify-content-center">
+    <% if @products.respond_to?(:total_pages) %>
+      <%= paginate @products, theme: 'twitter-bootstrap-4' %>
+    <% end %>
+  </div>
+
+<% else %>
+  <p>No products found.</p>
+<% end %>
+
+
+<%# test %>
+<!-- <h1>Search Results</h1>
+
+<% if @products.any? %>
+  <ul>
+    <% @products.each do |product| %>
+      <div class="col-md-4">
+          <div class="card mb-4">
+            <% if product.image.attached? %>
+          <!-- Show attached image using Active Storage -->
+            <%= image_tag url_for(product.image), class: "img-fluid", alt: product.name %>
+          <% elsif product.image.is_a?(String) && product.image.start_with?('http') %>
+          <!-- Show image using the URL -->
+              <%= image_tag product.image, class: "img-fluid", alt: product.name %>
+            <% else %>
+            <!-- Show a placeholder image if no image is attached or URL provided -->
+                <%= image_tag 'generic_image.png', class: "img-fluid", alt: product.name %>
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= product.name %></h5>
+              <p class="card-text"><%= product.description %></p>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </ul>
+
+   <!-- Pagination -->
+  <div class="d-flex justify-content-center">
+    <% if @products.respond_to?(:total_pages) %>
+      <%= paginate @products, theme: 'twitter-bootstrap-4' %>
+    <% end %>
+  </div>
+
+<% else %>
+  <p>No products found.</p>
+<% end %>
+
+
+
+
+
+
+
+
+
+

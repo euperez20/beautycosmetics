@@ -1,0 +1,26 @@
+<h1>Pr</h1>
+
+
+<p>Customer: <%= session[:user_name] %></p>
+<p>Address: <%= session[:user_address] %></p>
+<p>Province: <%= Province.find_by(id: session[:province_id])&.name %></p>
+
+<p>Total GST: <%= number_to_currency(session[:total_gst]) %></p>
+<p>Total PST: <%= number_to_currency(session[:total_pst]) %></p>
+<p>Total HST: <%= number_to_currency(session[:total_hst]) %></p>
+<p>Total + Taxes: <%= number_to_currency(session[:total_amount_with_taxes]) %></p>
+
+
+<% if @cart_items.any? %>
+  <ul>
+    <% @cart_items.each do |item| %>
+      <li>
+        Product Name: <%= item['product_name'] %>
+        Quantity: <%= item['quantity'] %>
+        Price: <%= item['price'] %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No hay productos en el carrito.</p>
+<% end %>

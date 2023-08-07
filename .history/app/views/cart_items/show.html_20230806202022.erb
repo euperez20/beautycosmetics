@@ -1,0 +1,22 @@
+<h1>Detalles del elemento del carrito</h1>
+
+<% if @cart_items.any? %>
+  <ul>
+    <% @cart_items.each do |item| %>
+      <li>
+        Nombre del producto: <%= item['product_name'] %>
+        Cantidad: <%= item['quantity'] %>
+        Precio: <%= item['price'] %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No hay productos en el carrito.</p>
+<% end %>
+
+<p>Cust: <%= session[:user_name] %></p>
+<p>Dirección del usuario: <%= session[:user_address] %></p>
+<p>Provincia seleccionada: <%= Province.find_by(id: session[:province_id])&.name %></p>
+<p>Total después de impuestos: <%= number_to_currency(session[:total_amount_with_taxes]) %></p>
+<p>Total GST: <%= number_to_currency(session[:total_gst]) %></p>
+

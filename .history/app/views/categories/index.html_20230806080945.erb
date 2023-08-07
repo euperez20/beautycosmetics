@@ -1,0 +1,46 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render 'shared/header' %>
+
+<div class="container mt-5">
+  <h1>All Categories</h1>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Category Name</th>
+        <th>Show Products</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @categories.each do |category| %>
+        <tr>
+          <td><%= category.name %></td>
+          <td><%= link_to "Show Products", category_products_path(category), class: "btn btn-primary" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+
+
+
+
+<!-- <p style="color: green"><%= notice %></p>
+
+<h1>Categories</h1>
+
+<div id="categories">
+  <% @categories.each do |category| %>
+    <%= render category %>
+    <p>
+      <%= link_to "Show this category", category %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New category", new_category_path %> -->

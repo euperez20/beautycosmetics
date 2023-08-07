@@ -1,0 +1,13 @@
+
+
+<h1>Checkout</h1>
+
+<% if @gst.present? %>
+  <h2>Taxes:</h2>
+  <p>GST: <%= number_to_currency(@gst) %></p>
+  <p>PST: <%= number_to_currency(@pst) %></p>
+  <p>HST: <%= number_to_currency(@hst) %></p>
+<% end %>
+
+<h2>Total with Taxes: <%= number_to_currency(@total_amount_with_taxes) %></h2>
+

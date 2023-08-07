@@ -1,0 +1,37 @@
+<h1>Detalles del elemento del carrito</h1>
+
+<% if @cart_items.any? %>
+  <ul>
+    <% @cart_items.each do |item| %>
+      <li>
+        Nombre del producto: <%= item['product_name'] %>
+        Cantidad: <%= item['quantity'] %>
+        Precio: <%= item['price'] %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No hay productos en el carrito.</p>
+<% end %>
+
+
+
+
+<!-- app/views/cart_items/checkout.html.erb -->
+
+<h1>Checkout</h1>
+<%= form_tag checkout_cart_items_path, method: :post do %>
+  <div>
+    <label for="user_name">Name:</label>
+    <%= text_field_tag 'user_name', nil, required: true %>
+  </div>
+  <div>
+    <label for="user_address">Address:</label>
+    <%= text_area_tag 'user_address', nil, required: true %>
+  </div>
+  <div>
+    <label for="province_id">Province:</label>
+    <%= select_tag 'province_id', options_for_select(Province.all.map { |p| [p.name, p.id] }), prompt: 'Select province', required: true %>
+  </div>
+  <%= submit_tag 'Checkout' %>
+<% end %>

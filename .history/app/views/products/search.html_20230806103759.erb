@@ -1,0 +1,23 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render 'shared/header' %>
+<h1>Search Results</h1>
+
+<% if @products.any? %>
+  <ul>
+    <% @products.each do |product| %>
+      <li><%= product.name %></li>
+    <% end %>
+  </ul>
+
+ <!-- Pagination -->
+<div class="d-flex justify-content-center">
+    <%= paginate @search_results, theme: 'twitter-bootstrap-4' %>
+  </div>
+
+
+<% else %>
+  <p>No products found.</p>
+<% end %>
+
+
