@@ -1,0 +1,63 @@
+<p class="text-success"><%= notice %></p>
+
+<%= render 'shared/header' %>
+<div class="container mt-5">
+  <h3>Pre-Order</h3>
+
+  <div class="row">
+    <div class="col-md-6">
+      <p><strong>Customer:</strong> <%= session[:user_name] %></p>
+      <p><strong>Email: </strong> <%= session[:email] %></p>
+      <p><strong>Address:</strong> <%= session[:user_address] %></p>
+      <p><strong>Province:</strong> <%= Province.find_by(id: session[:province_id])&.name %></p>
+    </div>
+  </div>
+
+  <% if @cart_items.any? %>
+    <div class="row mt-3">
+      <div class="col-md-12">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Product Name</th>
+              <th>Quantity</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @cart_items.each do |item| %>
+              <% product = Product.find_by(id: item['product_id']) %>
+              <% next unless product %>
+              <tr>
+                <td><%= product.name %></td>
+                <td><%= item['quantity'] %></td>
+                <td><%= number_to_currency(item['price'].to_f) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% else %>
+    <div class="row mt-3">
+      <div class="col-md-12">
+        <p>There are no products in the cart.</p>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="row mt-3">
+    <div class="col-md-6">
+        <p><strong>Subtotal:</strong> <%= number_to_currency(session[:total_amount]) %></p>
+        <p><strong>Total GST:</strong> <%= number_to_currency(session[:total_gst]) %></p>
+        <p><strong>Total PST:</strong> <%= number_to_currency(session[:total_pst]) %></p>
+        <p><strong>Total HST:</strong> <%= number_to_currency(session[:total_hst]) %></p>
+        <p><strong>Total + Taxes:</strong> <%= number_to_currency(session[:total_amount_with_taxes]) %></p>
+    </div>
+
+    <%# Confirm Order Button %>
+    <%= form_with url: orders_path, method: :post do |form| %>
+        <%= form.submit 'Confirm Order', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

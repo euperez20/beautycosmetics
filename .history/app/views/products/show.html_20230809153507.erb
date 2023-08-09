@@ -1,0 +1,35 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render 'shared/header' %>
+
+<!-- breadcrumbs -->
+
+<!-- <% @breadcrumbs.each_with_index do |breadcrumb, index| %>
+  <% if index < @breadcrumbs.length - 1 %>
+    <% if breadcrumb[:path] == category_path(@category) %>
+      <%= link_to breadcrumb[:name], category_products_path(@category) %> >
+    <% else %>
+      <%= link_to breadcrumb[:name], breadcrumb[:path] %> >
+    <% end %>
+  <% else %>
+    <%= breadcrumb[:name] %>
+  <% end %> 
+<% end %>
+
+
+<%= render @product %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,50 @@
+<p class="text-success"><%= notice %></p>
+
+<%= render 'shared/header' %>
+
+<h2>My Orders</h2>
+
+<%= link_to "Buscar Órdenes", search_orders_path %>
+
+
+ <h3>Search Orders</h3>
+  <%= form_with url: orders_path, method: :get do |form| %>
+
+    <div class="form-group">
+      <%= form.label :email, "Correo Electrónico" %>
+      <%= form.email_field :email, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :order_number, "Número de Orden" %>
+      <%= form.text_field :order_number, class: "form-control" %>
+    </div>
+    <%= form.submit "Buscar", class: "btn btn-primary" %>
+  <% end %>
+
+
+<% if @orders.any? %>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Total Amount</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= order.id %></td>
+          <td><%= number_to_currency(order.total_amount_with_taxes) %></td>
+          <td><%= order.status %></td>
+          <td>
+            <%= link_to "View", order_path(order), class: "btn btn-primary btn-sm" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No orders found.</p>
+<% end %>

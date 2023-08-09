@@ -1,0 +1,11 @@
+<% if @order %>
+  <h2>Order Details</h2>
+  <p>Email: <%= @order.email %></p>
+  <p>Order Number: <%= @order.order_number %></p>
+  
+  
+  <%= link_to "Back to Orders", orders_path, class: "btn btn-primary" %>
+<% else %>
+  <p><%= flash[:notice] %></p>
+  <%= link_to "Back to Search", new_search_orders_path, class: "btn btn-primary" %>
+<% end %>

@@ -1,0 +1,9 @@
+<% if @order %>
+  <h2>Order Details</h2>
+  <p>Email: <%= @order.email %></p>
+  <p>Order Number: <%= @order.order_number %></p>
+  
+  
+<% else %>
+  <p><%= flash[:notice] %></p>
+<% end %>

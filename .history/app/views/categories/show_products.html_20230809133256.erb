@@ -1,0 +1,60 @@
+<%= render 'shared/header' %>
+
+<!-- >
+<% @breadcrumbs.each_with_index do |breadcrumb, index| %>
+  <% if index < @breadcrumbs.length - 1 %>
+    <% if breadcrumb[:path] == category_path(@category) %>
+      <%= link_to breadcrumb[:name], category_products_path(@category) %> >
+    <% else %>
+      <%= link_to breadcrumb[:name], breadcrumb[:path] %> >
+    <% end %>
+  <% else %>
+    <%= breadcrumb[:name] %>
+  <% end %>
+<% end %>
+
+<br>
+<div class="container">
+  <% if @category %>
+    <h3>Products in <%= @category.name %> category</h3>
+    <div class="row">
+    <% @products.each do |product| %>
+      <div class="col-md-3 mb-4">
+        <div class="card h-100">
+          <% if product.image.attached? %>          
+            <%= image_tag url_for(product.image), class: "img-fluid", alt: product.name %>
+          <% elsif product.image.is_a?(String) && product.image.start_with?('http') %>          
+              <%= image_tag product.image, class: "img-fluid", alt: product.name %>
+            <% else %>            
+                <%= image_tag 'generic_image.png', class: "img-fluid", alt: product.name %>
+            <% end %>
+          
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to product.name, product %></h5>
+            <p>Category: <%= product.category.name %></p>
+            <p class="card-text"><%= truncate(product.description, length: 150, separator: ' ', omission: '...') %></p>
+            <p class="card-text price">$<%= product.price %></p>
+
+          </div>
+          <div class="card-footer">
+            <%= button_to 'Add to cart', cart_items_path(product_id: product.id), method: :post, class: "btn btn-light" %>
+            
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <% end %>
+
+  <div class="d-flex justify-content-center">
+    <%= paginate @products, theme: 'twitter-bootstrap-4' %>
+  </div>
+</div>
+
+</div>
+
+
+
+
+
+

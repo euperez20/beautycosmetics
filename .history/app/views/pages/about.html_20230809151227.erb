@@ -1,0 +1,10 @@
+
+<%= render 'shared/header' %>
+
+<p class="text-success"><%= notice %></p>
+<br>
+
+<div class="container">
+  <h3>About Us</h3>
+  <%= sanitize(@about_page.content) %>
+</div>

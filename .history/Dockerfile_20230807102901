@@ -1,0 +1,20 @@
+# Use the official Ruby image as the base image
+FROM ruby:ruby:3.1.2
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the Gemfile and Gemfile.lock into the container
+COPY Gemfile Gemfile.lock ./
+
+# Install bundler and dependencies
+RUN gem install bundler && bundle install
+
+# Copy the rest of the application code into the container
+COPY . .
+
+# Expose port 3000 (assuming your Rails app listens on this port)
+EXPOSE 3000
+
+# Define the command to run your Rails app
+CMD ["rails", "server", "-b", "0.0.0.0"]

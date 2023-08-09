@@ -1,0 +1,34 @@
+<%= render 'shared/header' %>
+
+<p class="text-success"><%= notice %></p>
+
+<h2>Orders</h2>
+
+
+
+<% if @orders.any? %>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Total Amount</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= order.id %></td>
+          <td><%= number_to_currency(order.total_amount_with_taxes) %></td>
+          <td><%= order.status %></td>
+          <td>
+            <%= link_to "View", order_path(order), class: "btn btn-primary btn-sm" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No orders found.</p>
+<% end %>

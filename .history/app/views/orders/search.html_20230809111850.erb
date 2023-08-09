@@ -1,0 +1,21 @@
+<%= form_with url: search_orders_path, method: :get do |form| %>
+  <%= form.label :email, "Email" %>
+  <%= form.text_field :email %>
+  <br>
+  <%= form.label :order_number, "Order Number" %>
+  <%= form.text_field :order_number %>
+  <br>
+  <%= form.submit "Search" %>
+<% end %>
+
+
+
+<% if @order %>
+  <h2>Order Details</h2>
+  <p>Order ID: <%= @order.id %></p>
+  <p>Total Amount: <%= number_to_currency(@order.total_amount_with_taxes) %></p>
+  <p>Status: <%= @order.status %></p>
+  <p><%= link_to "View Order", order_path(@order), class: "btn btn-primary btn-sm" %></p>
+<% else %>
+  <p>No order found.</p>
+<% end %>

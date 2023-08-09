@@ -1,0 +1,11 @@
+<%= form_with model: @order, url: search_orders_path, method: :get do |f| %>
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.text_field :email, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :order_number %>
+    <%= f.text_field :order_number, class: "form-control" %>
+  </div>
+  <%= f.submit "Search", class: "btn btn-primary" %>
+<% end %>

@@ -1,0 +1,9 @@
+<%= form_with url: search_orders_path, method: :get do |form| %>
+  <%= form.label :email, "Email" %>
+  <%= form.text_field :email %>
+  <br>
+  <%= form.label :order_number, "Order Number" %>
+  <%= form.text_field :order_number %>
+  <br>
+  <%= form.submit "Search" %>
+<% end %>
