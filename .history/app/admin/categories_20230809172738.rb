@@ -2,12 +2,12 @@ ActiveAdmin.register Category do
   permit_params :name, :other_attribute, :another_attribute
 
   # Views
-  index do    
-    selectable_column
-    column :id
-    column :name
-    actions
-  end
+  # index do    
+  #   selectable_column
+  #   column :id
+  #   column :name
+  #   actions
+  # end
   
   show do
     attributes_table do
@@ -23,6 +23,8 @@ ActiveAdmin.register Category do
     f.actions
   end
 
-
+  # collection_action :index, method: :get do
+  #   @categories = Category.page(params[:page]).per(10)  
+  # end
 
 end

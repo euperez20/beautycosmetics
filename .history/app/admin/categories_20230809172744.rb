@@ -23,6 +23,8 @@ ActiveAdmin.register Category do
     f.actions
   end
 
-
+  # collection_action :index, method: :get do
+  #   @categories = Category.page(params[:page]).per(10)  
+  # end
 
 end

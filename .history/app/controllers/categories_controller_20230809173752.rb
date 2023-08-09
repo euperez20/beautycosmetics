@@ -5,11 +5,14 @@ class CategoriesController < ApplicationController
 
   
   def index
-    @categories = Category.page(params[:page]).per(10)
-    @categories = Category.all    
+    
+    @categories = Category.all
+    
     @category = Category.first
    
   end
+
+
 
 
   def show 

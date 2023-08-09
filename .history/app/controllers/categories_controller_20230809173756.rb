@@ -12,6 +12,8 @@ class CategoriesController < ApplicationController
   end
 
 
+
+
   def show 
 
     if params[:category_id].present?
