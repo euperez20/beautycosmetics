@@ -13,11 +13,9 @@ ActiveAdmin.register User do
   end
   
   filter :name
-  # filter :name_cont, label: 'Name'
-
   filter :address
   # filter :province, as: :select, collection: Province.all
-  # filter :province, label: 'Province', as: :select, collection: Province.all.map { |p| [p.name, p.id] }
+  filter :province, label: 'Province', as: :select, collection: Province.all.map { |p| [p.name, p.id] }
 
 
   form do |f|
